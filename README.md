@@ -16,17 +16,14 @@ This web app aims to provide a collaborative environment for musicians to share 
 
 ### Installation
 
-Install dependencies:
+1. Create a `.env.local` at the root of the project and fill it out following the format provided in `.env.local`
+2. Install dependencies by running `pnpm install`
 
-```sh
-pnpm install
-```
-
-### Usage
+## Usage
 
 To run the project in development, run `pnpm dev`.
 
-### Roadmap
+## Roadmap
 
 - [ ] Classic piano layout with ~4 octaves
 - [ ] Keyboard to piano key mapping to play multiple notes at once using keyboard
@@ -34,3 +31,17 @@ To run the project in development, run `pnpm dev`.
 - [ ] Link sharable rooms in order to enable "private" rooms among friends
 - [ ] Mobile Support
 - [ ] Support for various other instruments/effects/sounds
+
+## Contributing
+I'd appreciate any contributions to the project! To contribute, follow the following guidelines:
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/yourFeature`)
+3. Implement and commit your changes (`git commit -m "description of your feature"`)
+4. Push your changes (`git push origin feature/yourFeature`)
+5. Open a pull request
+
+## License
+Distributed under the GNU General Public License v3.0. See `LICENSE.txt` for more information.
+
+## Questions
+If you have any questions or would just like to chat about the project, feel free to email me at [emmanuel.moncada27@gmail.com](mailto:emmanuel.moncada27@gmail.com) or shoot me a message on Discord [@__emmanuel](https://discordapp.com/users/582393395570409492)
