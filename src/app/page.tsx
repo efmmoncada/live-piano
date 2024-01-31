@@ -11,7 +11,13 @@ export default function Home() {
   return (
     <NextUIProvider>
       <RoomProvider id={roomId} initialPresence={{}}>
-        <ClientSideSuspense fallback={<div>Loading Liveblocks...</div>}>
+        <ClientSideSuspense
+          fallback={
+            <div className="h-screen grid place-content-center">
+              Loading Liveblocks...
+            </div>
+          }
+        >
           {() => <Room />}
         </ClientSideSuspense>
       </RoomProvider>

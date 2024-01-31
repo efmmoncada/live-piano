@@ -1,4 +1,4 @@
-type Octaves = "3" | "4" | "5";
+type Octaves = "3" | "4" | "5" | "6";
 type Notes = "C" | "D" | "E" | "F" | "G" | "A" | "B";
 type Accidentals = "#" | "b" | "";
 
