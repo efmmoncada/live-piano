@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@liveblocks/client':
+    specifier: ^1.9.7
+    version: 1.9.7
+  '@liveblocks/react':
+    specifier: ^1.9.7
+    version: 1.9.7(react@18.2.0)
   next:
     specifier: 14.1.0
     version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -37,6 +43,9 @@ devDependencies:
   postcss:
     specifier: ^8
     version: 8.4.33
+  prettier:
+    specifier: 3.2.4
+    version: 3.2.4
   tailwindcss:
     specifier: ^3.3.0
     version: 3.4.1
@@ -161,6 +170,28 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
+
+  /@liveblocks/client@1.9.7:
+    resolution: {integrity: sha512-IPY6kir69MsE0bXUvQLWK5jnkZ2Yhxu1NHg78Wxs7wo6I+Fk/7f/rYVxJD0IDHEpIIwbROteHcnNgqD6YwkZIA==}
+    dependencies:
+      '@liveblocks/core': 1.9.7
+    dev: false
+
+  /@liveblocks/core@1.9.7:
+    resolution: {integrity: sha512-zvYZch5eU3raLWgNTQyCxLVM+c4V5ped2YGPIiir2Uw09ITKJTqhLqp6ZHqRkWE7mpogV4fJKnF/M1jNDqPh3Q==}
+    dev: false
+
+  /@liveblocks/react@1.9.7(react@18.2.0):
+    resolution: {integrity: sha512-X+m9Ikw1do3aU3/biINbhXvuS0PaaYyHln4oaQKPER7+UstkeBIxqHiW7Uo4sw6BYkOkDAYmCiYOAAQPYWXKig==}
+    peerDependencies:
+      react: ^16.14.0 || ^17 || ^18
+    dependencies:
+      '@liveblocks/client': 1.9.7
+      '@liveblocks/core': 1.9.7
+      nanoid: 3.3.7
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
 
   /@next/env@14.1.0:
     resolution: {integrity: sha512-Py8zIo+02ht82brwwhTg36iogzFqGLPXlRGKQw5s+qP/kMNc4MAyDeEwBKDijk6zTIbegEgu8Qy7C1LboslQAw==}
@@ -2146,6 +2177,12 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
+  /prettier@3.2.4:
+    resolution: {integrity: sha512-FWu1oLHKCrtpO1ypU6J0SbK2d9Ckwysq6bHj/uaCP26DxrPpppCLQRGVuqAxSTvhF00AcvDRyYrLNW7ocBhFFQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
+
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
     dependencies:
@@ -2659,6 +2696,14 @@ packages:
     dependencies:
       punycode: 2.3.1
     dev: true
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
