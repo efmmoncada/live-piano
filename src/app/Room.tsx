@@ -26,11 +26,11 @@ export function Room() {
 
   useEventListener((e) => {
     piano?.keyDown({ note: e.event.pitch });
-    piano?.keyUp({ note: e.event.pitch });
+    piano?.keyUp({ note: e.event.pitch, time: "+1" });
   });
 
   return piano !== null ? (
-    <div className='flex h-screen justify-center'>
+    <div className='h-screen flex items-center justify-center'>
       <PianoView piano={piano} />
       <div className='absolute bottom-0 right-0'>Users Connected: {numUsers}</div>
     </div>

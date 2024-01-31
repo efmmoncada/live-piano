@@ -1,7 +1,7 @@
 import { Pitch } from "@/types/notes";
 import { Piano } from "@tonejs/piano";
 import { useBroadcastEvent } from "../../liveblocks.config";
-import { PianoNote } from "./pianoNote";
+import { PianoGroup } from "./pianoGroup";
 
 type Props = {
   piano: InstanceType<typeof Piano>;
@@ -13,37 +13,62 @@ export function PianoView({ piano }: Props) {
   const handleKeyPress = (note: Pitch) => {
     broadcast({ type: "PLAY_NOTE", pitch: note });
     piano.keyDown({ note: note });
-    piano.keyUp({ note: note });
+    piano.keyUp({ note: note, time: "+1" });
   };
 
-  return (
-    <div className="flex justify-center h-full">
-      <PianoNote play={handleKeyPress} note="C4" />
-      <PianoNote play={handleKeyPress} note="C#4" />
-      <PianoNote play={handleKeyPress} note="D4" />
-      <PianoNote play={handleKeyPress} note="D#4" />
-      <PianoNote play={handleKeyPress} note="E4" />
-      <PianoNote play={handleKeyPress} note="F4" />
-      <PianoNote play={handleKeyPress} note="F#4" />
-      <PianoNote play={handleKeyPress} note="G4" />
-      <PianoNote play={handleKeyPress} note="G#4" />
-      <PianoNote play={handleKeyPress} note="A4" />
-      <PianoNote play={handleKeyPress} note="A#4" />
-      <PianoNote play={handleKeyPress} note="B4" />
-      <PianoNote play={handleKeyPress} note="C5" />
-      <PianoNote play={handleKeyPress} note="C#5" />
-      <PianoNote play={handleKeyPress} note="D5" />
-      <PianoNote play={handleKeyPress} note="D#5" />
-      <PianoNote play={handleKeyPress} note="E5" />
-      <PianoNote play={handleKeyPress} note="F5" />
-      <PianoNote play={handleKeyPress} note="F#5" />
-      <PianoNote play={handleKeyPress} note="G5" />
-      {/* <PianoNote play={handleKeyPress} note="G#5" />
-      <PianoNote play={handleKeyPress} note="A5" />
-      <PianoNote play={handleKeyPress} note="A#5" />
-      <PianoNote play={handleKeyPress} note="B5" />
-      <PianoNote play={handleKeyPress} note="C6" /> */}
+  const pitches: Pitch[] = [
+    "C3",
+    "C#3",
+    "D3",
+    "D#3",
+    "E3",
+    "F3",
+    "F#3",
+    "G3",
+    "G#3",
+    "A3",
+    "A#3",
+    "B3",
+    "C4",
+    "C#4",
+    "D4",
+    "D#4",
+    "E4",
+    "F4",
+    "F#4",
+    "G4",
+    "G#4",
+    "A4",
+    "A#4",
+    "B4",
+    "C5",
+    "C#5",
+    "D5",
+    "D#5",
+    "E5",
+    "F5",
+    "F#5",
+    "G5",
+    "G#5",
+    "A5",
+    "A#5",
+    "B5",
+  ];
 
+  const groups = [];
+
+  let i = 0;
+  while (pitches.length > 0) {
+    let numTake = i % 2 === 0 ? 5 : 7;
+    groups.push(pitches.splice(0, numTake));
+    i++;
+  }
+
+  return (
+    <div className="flex justify-center items-center h-5/6">
+      {groups.map((group, i) => (
+        <PianoGroup key={i} notes={group} play={handleKeyPress} />
+      ))}
     </div>
   );
 }
