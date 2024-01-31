@@ -25,7 +25,7 @@ To run the project in development, run `pnpm dev`.
 
 ## Roadmap
 
-- [ ] Classic piano layout with ~4 octaves
+- [x] Classic piano layout with ~4 octaves
 - [ ] Keyboard to piano key mapping to play multiple notes at once using keyboard
 - [ ] MIDI controller support using [WebMIDI.js](https://webmidijs.org/) or the native [Web MIDI API](https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API)
 - [ ] Link sharable rooms in order to enable "private" rooms among friends
