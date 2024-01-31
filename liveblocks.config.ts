@@ -1,3 +1,6 @@
+"use client";
+
+import { Pitch } from '@/types/notes';
 import { createClient } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 
@@ -36,8 +39,8 @@ type UserMeta = {
 // Optionally, the type of custom events broadcast and listened to in this
 // room. Use a union for multiple events. Must be JSON-serializable.
 type RoomEvent = {
-  // type: "NOTIFICATION",
-  // ...
+  type: "PLAY_NOTE";
+  pitch: Pitch
 };
 
 export const {
