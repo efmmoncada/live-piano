@@ -65,7 +65,7 @@ export function PianoView({ piano }: Props) {
   }
 
   return (
-    <div className="flex justify-center items-center h-5/6">
+    <div className="flex w-max mx-auto p-4 overflow-auto items-center h-5/6">
       {groups.map((group, i) => (
         <PianoGroup key={i} notes={group} play={handleKeyPress} />
       ))}
