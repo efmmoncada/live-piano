@@ -8,10 +8,11 @@ function PianoRow({ children }: PropsWithChildren) {
 
 type Props = {
   notes: Pitch[];
-  play: (note: Pitch) => void;
+  keyDown: (note: Pitch) => void;
+  keyUp: (note: Pitch) => void;
 };
 
-export function PianoGroup({ notes, play }: Props) {
+export function PianoGroup({ notes, keyDown, keyUp }: Props) {
   const [naturals, accidentals] = notes.reduce(
     ([naturals, accidentals], currPitch) => {
       if (currPitch.search(/#|b/) === -1) naturals.push(currPitch);
@@ -28,7 +29,8 @@ export function PianoGroup({ notes, play }: Props) {
           <PianoNote
             key={pitch}
             note={pitch}
-            play={play}
+            keyDown={keyDown}
+            keyUp={keyUp}
             backgroundColor="black"
             textColor="white"
           />
@@ -39,7 +41,8 @@ export function PianoGroup({ notes, play }: Props) {
           <PianoNote
             key={pitch}
             note={pitch}
-            play={play}
+            keyDown={keyDown}
+            keyUp={keyUp}
             backgroundColor="white"
             textColor="black"
           />

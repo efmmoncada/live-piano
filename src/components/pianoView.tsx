@@ -1,6 +1,7 @@
 import { Pitch, notes, octaves } from "@/types/notes";
 import { Piano } from "@tonejs/piano";
-import { useBroadcastEvent } from "../../liveblocks.config";
+import { useEffect } from "react";
+import { useBroadcastEvent, useMyPresence } from "../../liveblocks.config";
 import { PianoGroup } from "./pianoGroup";
 
 type Props = {
@@ -9,18 +10,38 @@ type Props = {
 
 export function PianoView({ piano }: Props) {
   const broadcast = useBroadcastEvent();
+  const [myPresence, updateMyPresence] = useMyPresence();
 
-  const handleKeyPress = (note: Pitch) => {
-    broadcast({ type: "PLAY_NOTE", pitch: note });
+  useEffect(() => {
+    console.log(myPresence.notesPlaying);
+  }, [myPresence.notesPlaying]);
+
+  const handleKeyDown = (note: Pitch) => {
+    broadcast({ type: "KEY_DOWN", pitch: note });
+    updateMyPresence({ notesPlaying: [...myPresence.notesPlaying, note] });
     piano.keyDown({ note: note });
-    piano.keyUp({ note: note, time: "+1" });
   };
+
+  const handleKeyUp = (note: Pitch) => {
+    broadcast({ type: "KEY_UP", pitch: note });
+    updateMyPresence({
+      notesPlaying: myPresence.notesPlaying.filter((n) => n !== note),
+    });
+    piano.keyUp({ note: note });
+  };
+
+  // const handleKeyPress = (note: Pitch) => {
+  //   broadcast({ type: "PLAY_NOTE", pitch: note });
+  //   updateMyPresence({ notesPlaying: [...myPresence.notesPlaying, note] });
+  //   piano.keyDown({ note: note });
+  //   piano.keyUp({ note: note, time: "+1" });
+  // };
 
   const pitches: Pitch[] = [];
 
   octaves.forEach((octave) => {
     notes.forEach((note) => {
-      pitches.push(`${note}${octave}`)
+      pitches.push(`${note}${octave}`);
     });
   });
 
@@ -36,7 +57,12 @@ export function PianoView({ piano }: Props) {
   return (
     <div className="flex w-max mx-auto p-4 overflow-auto items-center h-5/6">
       {groups.map((group, i) => (
-        <PianoGroup key={i} notes={group} play={handleKeyPress} />
+        <PianoGroup
+          key={i}
+          notes={group}
+          keyDown={handleKeyDown}
+          keyUp={handleKeyUp}
+        />
       ))}
     </div>
   );

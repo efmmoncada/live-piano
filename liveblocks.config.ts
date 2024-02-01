@@ -1,12 +1,11 @@
 "use client";
 
-import { Pitch } from '@/types/notes';
+import { Pitch } from "@/types/notes";
 import { createClient } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 
 const client = createClient({
-  publicApiKey:
-    process.env.NEXT_PUBLIC_LIVEBLOCKS_API_KEY || '',
+  publicApiKey: process.env.NEXT_PUBLIC_LIVEBLOCKS_API_KEY || "",
   // authEndpoint: "/api/auth",
   // throttle: 100,
 });
@@ -15,8 +14,8 @@ const client = createClient({
 // and that will automatically be kept in sync. Accessible through the
 // `user.presence` property. Must be JSON-serializable.
 type Presence = {
-  // cursor: { x: number, y: number } | null,
-  // ...
+  notesPlaying: Pitch[];
+  color: string;
 };
 
 // Optionally, Storage represents the shared document that persists in the
@@ -38,10 +37,15 @@ type UserMeta = {
 
 // Optionally, the type of custom events broadcast and listened to in this
 // room. Use a union for multiple events. Must be JSON-serializable.
-type RoomEvent = {
-  type: "PLAY_NOTE";
-  pitch: Pitch
-};
+type RoomEvent =
+  | {
+      type: "KEY_DOWN";
+      pitch: Pitch;
+    }
+  | {
+      type: "KEY_UP";
+      pitch: Pitch;
+    };
 
 export const {
   suspense: {
