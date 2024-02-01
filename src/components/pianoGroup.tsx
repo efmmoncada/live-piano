@@ -25,12 +25,24 @@ export function PianoGroup({ notes, play }: Props) {
     <div className="flex flex-col h-full">
       <PianoRow>
         {accidentals.map((pitch) => (
-          <PianoNote key={pitch} note={pitch} play={play} />
+          <PianoNote
+            key={pitch}
+            note={pitch}
+            play={play}
+            backgroundColor="black"
+            textColor="white"
+          />
         ))}
       </PianoRow>
       <PianoRow>
         {naturals.map((pitch) => (
-          <PianoNote key={pitch} note={pitch} play={play} />
+          <PianoNote
+            key={pitch}
+            note={pitch}
+            play={play}
+            backgroundColor="white"
+            textColor="black"
+          />
         ))}
       </PianoRow>
     </div>

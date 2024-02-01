@@ -4,16 +4,14 @@ import { Button } from "@nextui-org/react";
 type Props = {
   note: Pitch;
   play: (note: Pitch) => void;
+  backgroundColor: "black" | "white";
+  textColor: "black" | "white";
 };
 
-export function PianoNote({ note, play }: Props) {
-  const isAccidental = note.search(/#|b/) !== -1;
-  const bgColor = isAccidental ? "black" : "white";
-  const textColor = isAccidental ? "white" : "black";
-
+export function PianoNote({ note, play, backgroundColor, textColor }: Props) {
   return (
     <Button
-      className={`bg-${bgColor} text-${textColor} h-full border-1 border-${textColor}`}
+      className={`bg-${backgroundColor} text-${textColor} h-full border-1 border-${textColor}`}
       onPress={() => play(note)}
     >
       {note}
